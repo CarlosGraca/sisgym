@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f4371413-a798-4ed1-a50f-6bc48160eea8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pIdCliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     empresa.`nome` AS empresa_nome,
+     empresa.`logo` AS empresa_logo,
+     pessoa.`nome` AS pessoa_nome,
+     pessoa.`telemovel` AS pessoa_telemovel,
+     pessoa.`codBarra` AS pessoa_codBarra,
+     pessoa.`foto` AS pessoa_foto,
+     pessoa.`morada` AS pessoa_morada
+FROM
+     `empresa` empresa,
+     `pessoa` pessoa
+where pessoa.`idPessoa` =$P{pIdCliente}]]>
+	</queryString>
+	<field name="empresa_nome" class="java.lang.String"/>
+	<field name="empresa_logo" class="java.io.InputStream"/>
+	<field name="pessoa_nome" class="java.lang.String"/>
+	<field name="pessoa_telemovel" class="java.lang.String"/>
+	<field name="pessoa_codBarra" class="java.lang.String"/>
+	<field name="pessoa_foto" class="java.io.InputStream"/>
+	<field name="pessoa_morada" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="263" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="71" y="38" width="324" height="178" backcolor="#006699" uuid="905f8cef-adf2-4568-bf62-a28a34b1d078"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="413" y="38" width="324" height="180" backcolor="#006699" uuid="766ffe92-40b7-4bdc-8ac7-7aba2e860f64"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="672" y="206" width="100" height="20" uuid="f508267b-2aee-4295-83c4-b7dbb2fb5488"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MCSolution®]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="413" y="94" width="324" height="20" uuid="6f5c12e7-8d65-47e6-aa92-2fb723f0a087"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Este cartão é pessoal e intransferivel.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="413" y="114" width="324" height="20" uuid="21155e28-d38d-4150-958f-4a5449bbb3b4"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[A perda ou furto da mesma deverá ser comunicada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="413" y="134" width="324" height="20" uuid="8883c191-6142-4810-99cb-86a9aaa18509"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[imediatamente.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="187" y="134" width="168" height="20" uuid="285056ba-50d7-4582-b407-5f8345e9776e"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="174" width="168" height="20" uuid="ded8ed49-29ef-4739-9ba2-b3813c30ed11"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_telemovel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="154" width="168" height="20" uuid="22178a31-2078-475b-be13-0b35882bdacb"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_morada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="54" width="324" height="20" uuid="e9b958a2-bf43-47b7-99af-8c740e7a9a9b"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_nome}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="86" y="114" width="92" height="92" uuid="79fcc1dd-44d2-45eb-bbea-ba1daf096437"/>
+				<imageExpression><![CDATA[$F{pessoa_foto}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="190" y="44" width="165" height="70" uuid="e28454c3-9fdb-4426-9566-8ea009943e3e"/>
+				<imageExpression><![CDATA[$F{empresa_logo}]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement x="426" y="157" width="300" height="52" uuid="9fd65392-4fd6-4b1a-b14a-02f031d51403"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="3of9" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{pessoa_codBarra}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
