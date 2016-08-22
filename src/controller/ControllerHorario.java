@@ -46,7 +46,6 @@ public class ControllerHorario {
             switch (acao) {
                 case "inserir":
                     if (horarioDao.incluir(horarioModel)) {
-                        JOptionPane.showMessageDialog(null, "Registo Horario salvo com sucesso");
                         return true;
                     } else {
                         JOptionPane.showMessageDialog(null, "Não foi possivel inserir o registro!");
