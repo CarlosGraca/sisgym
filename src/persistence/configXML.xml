@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><conexion>
     <conexao id="1">
-        <password>mcsgym</password>
+        <password></password>
         <nameConexao>root</nameConexao>
         <driver>com.mysql.jdbc.Driver</driver>
         <driverManager>jdbc:mysql://localhost:3306</driverManager>

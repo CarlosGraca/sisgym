@@ -5,10 +5,13 @@ import controller.ControllerModalidade;
 import java.awt.Dimension;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -64,7 +67,7 @@ public class VModalidade extends javax.swing.JInternalFrame {
         jbImprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         getRootPane().setDefaultButton(jBPesquisar);
-        
+
         jLabel6.setVisible(false);
         jtMod_cod.setVisible(false);
     }
@@ -87,7 +90,6 @@ public class VModalidade extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -115,8 +117,15 @@ public class VModalidade extends javax.swing.JInternalFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTHorario = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTDiasSemana = new javax.swing.JTree();
+        seg = new javax.swing.JCheckBox();
+        ter = new javax.swing.JCheckBox();
+        qua = new javax.swing.JCheckBox();
+        qui = new javax.swing.JCheckBox();
+        sex = new javax.swing.JCheckBox();
+        sab = new javax.swing.JCheckBox();
+        dom = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
         jpMod_dados = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -361,28 +370,58 @@ public class VModalidade extends javax.swing.JInternalFrame {
         });
         jScrollPane4.setViewportView(jTHorario);
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Semana");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Segunda-Feira");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Terça-Feira");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Quarta-Feira");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Quinta-Feira");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Sexta-Feira");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Sábado");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Domingo");
-        treeNode1.add(treeNode2);
-        jTDiasSemana.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jTDiasSemana.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTDiasSemanaMouseClicked(evt);
+        seg.setText("Segunda-Feira");
+        seg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                segActionPerformed(evt);
             }
         });
-        jScrollPane2.setViewportView(jTDiasSemana);
+
+        ter.setText("Terça-Feira");
+        ter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                terActionPerformed(evt);
+            }
+        });
+
+        qua.setText("Quarta-Feira");
+        qua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quaActionPerformed(evt);
+            }
+        });
+
+        qui.setText("Quinta-Feira");
+        qui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quiActionPerformed(evt);
+            }
+        });
+
+        sex.setText("Sexta-Feira");
+        sex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sexActionPerformed(evt);
+            }
+        });
+
+        sab.setText("Sábado");
+        sab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sabActionPerformed(evt);
+            }
+        });
+
+        dom.setText("Domingo");
+        dom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                domActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Semana");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -390,9 +429,18 @@ public class VModalidade extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(seg, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(ter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(qua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(qui, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -413,18 +461,35 @@ public class VModalidade extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                             .addComponent(jSeparator2))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(seg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(qua)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(qui, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sex)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sab)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dom, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(jsHorario_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,11 +500,11 @@ public class VModalidade extends javax.swing.JInternalFrame {
                             .addComponent(jbAdd_horario)
                             .addComponent(jbRem_horario)
                             .addComponent(jbEd_horario))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpModi_listarLayout = new javax.swing.GroupLayout(jpModi_listar);
@@ -458,9 +523,9 @@ public class VModalidade extends javax.swing.JInternalFrame {
             .addGroup(jpModi_listarLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
 
         jTabMod.addTab("Lista de Modalidades", jpModi_listar);
@@ -554,7 +619,7 @@ public class VModalidade extends javax.swing.JInternalFrame {
             .addGroup(jpMod_dadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addContainerGap(363, Short.MAX_VALUE))
         );
 
         jTabMod.addTab("Modalidades", jpMod_dados);
@@ -575,8 +640,8 @@ public class VModalidade extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTabMod)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTabMod, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -636,15 +701,13 @@ public class VModalidade extends javax.swing.JInternalFrame {
             } else {
             }
 
-        } else {
-            if (validarCampos()) {
-                controllerModalidade.manutencaoModalidade("alterar", jtMod_cod.getText(), jtMod_nome.getText(), jtMod_valor.getText());
-                validar(true);
-                limparClienteCampos();
-                ativarDesativaBotoes(true);
-                destivarAtivarBotoes2(true);
-                validarVazio(true);
-            }
+        } else if (validarCampos()) {
+            controllerModalidade.manutencaoModalidade("alterar", jtMod_cod.getText(), jtMod_nome.getText(), jtMod_valor.getText());
+            validar(true);
+            limparClienteCampos();
+            ativarDesativaBotoes(true);
+            destivarAtivarBotoes2(true);
+            validarVazio(true);
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
@@ -654,7 +717,7 @@ public class VModalidade extends javax.swing.JInternalFrame {
         jbCancelar.setEnabled(false);
         jbEditar.setEnabled(false);
         jbApagar.setEnabled(false);
-        ativarDesativarClienteCampos(false);        
+        ativarDesativarClienteCampos(false);
         jbNovo.setEnabled(true);
         jTabMod.setEnabledAt(1, false);
         jTabMod.setSelectedIndex(0);
@@ -712,21 +775,35 @@ public class VModalidade extends javax.swing.JInternalFrame {
 
     private void jbAdd_horarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdd_horarioActionPerformed
         try {
+            ArrayList<JCheckBox> semanas = getSelectedSemana();
+            if (!semanas.isEmpty()) {
+                int aux = 0;
+                for (int i = 0; i < semanas.size(); i++) {
+                    // System.out.println(semanas.get(i).getText());
 
-            if (jTDiasSemana.isSelectionEmpty()) {
+                    codSemana = controllerModalidade.getDiaSemanaCodigo(semanas.get(i).getText());
+
+                    ModeloTabelaModalidade model = (ModeloTabelaModalidade) jtModalidade.getModel();
+                    String id = (String) model.getValueAt(jtModalidade.getSelectedRow(), 0);
+
+                    int idModal = Integer.parseInt(id);
+                    boolean sim = controllerHorario.manutencaoHorario("inserir", 1, idModal, codSemana, new java.sql.Timestamp(jsHorario_inicio.getDate().getTime()), new java.sql.Timestamp(jsHorario_fim.getDate().getTime()));
+                    controllerHorario.preencherJTabelaHorario(id);
+                    if (sim == true) {
+                        aux++;
+                    }
+                }
+
+                if (aux == semanas.size()) {
+                    JOptionPane.showMessageDialog(null, "Registo Horario salvo com sucesso");
+                    unSelectedSemana();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocorreu erro ao Salvar o Horario");
+                }
+            } else {
                 JOptionPane.showMessageDialog(null, "Selecione o dia de semana");
-            } else if (!jTDiasSemana.getLastSelectedPathComponent().toString().equalsIgnoreCase("Semana")) {
-
-                codSemana = controllerModalidade.getDiaSemanaCodigo(jTDiasSemana.getLastSelectedPathComponent().toString());
-
-                ModeloTabelaModalidade model = (ModeloTabelaModalidade) jtModalidade.getModel();
-                String id = (String) model.getValueAt(jtModalidade.getSelectedRow(), 0);
-
-                int idModal = Integer.parseInt(id);
-
-                controllerHorario.manutencaoHorario("inserir", 1, idModal, codSemana, new java.sql.Timestamp(jsHorario_inicio.getDate().getTime()), new java.sql.Timestamp(jsHorario_fim.getDate().getTime()));
-                controllerHorario.preencherJTabelaHorario(id);
             }
+            //  }
         } catch (Exception ex) {
             Logger.getLogger(VModalidade.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -760,12 +837,6 @@ public class VModalidade extends javax.swing.JInternalFrame {
         controllerModalidade.pesquisaModalidade(jtPesquisar.getText(), "Nome");
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
-    private void jTDiasSemanaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTDiasSemanaMouseClicked
-        if (!jTDiasSemana.getLastSelectedPathComponent().toString().equalsIgnoreCase("Semana")) {
-            controllerHorario.preencherJTabelaHorarioSemana(jTDiasSemana.getLastSelectedPathComponent().toString());
-        }
-    }//GEN-LAST:event_jTDiasSemanaMouseClicked
-
     private void jbImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbImprimirActionPerformed
         Conexao con = new Conexao();
         String nomeCliente = "Imprimir lista de modalidade versos Horário ?";
@@ -773,30 +844,58 @@ public class VModalidade extends javax.swing.JInternalFrame {
 
         if (opcaoEscolhida == JOptionPane.YES_OPTION) {
             InputStream caminho = getClass().getResourceAsStream("/relatorios/RModalidade.jrxml");
-            con.EjecutarReporteStream(caminho);  
+            con.EjecutarReporteStream(caminho);
         }
     }//GEN-LAST:event_jbImprimirActionPerformed
 
+    private void segActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segActionPerformed
+        horarioSemana(seg.getText());
+    }//GEN-LAST:event_segActionPerformed
+
+    private void terActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terActionPerformed
+        horarioSemana(ter.getText());
+    }//GEN-LAST:event_terActionPerformed
+
+    private void quaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quaActionPerformed
+        horarioSemana(qua.getText());
+    }//GEN-LAST:event_quaActionPerformed
+
+    private void quiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quiActionPerformed
+        horarioSemana(qui.getText());
+    }//GEN-LAST:event_quiActionPerformed
+
+    private void sexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexActionPerformed
+        horarioSemana(sex.getText());
+    }//GEN-LAST:event_sexActionPerformed
+
+    private void sabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sabActionPerformed
+        horarioSemana(sab.getText());
+    }//GEN-LAST:event_sabActionPerformed
+
+    private void domActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domActionPerformed
+        horarioSemana(dom.getText());
+    }//GEN-LAST:event_domActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox dom;
     private javax.swing.JButton jBPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTree jTDiasSemana;
+    private javax.swing.JSeparator jSeparator3;
     public static javax.swing.JTable jTHorario;
     public static javax.swing.JTabbedPane jTabMod;
     private javax.swing.JButton jbAdd_horario;
@@ -820,6 +919,12 @@ public class VModalidade extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField jtMod_valor;
     public static javax.swing.JTable jtModalidade;
     private javax.swing.JTextField jtPesquisar;
+    private javax.swing.JCheckBox qua;
+    private javax.swing.JCheckBox qui;
+    private javax.swing.JCheckBox sab;
+    private javax.swing.JCheckBox seg;
+    private javax.swing.JCheckBox sex;
+    private javax.swing.JCheckBox ter;
     // End of variables declaration//GEN-END:variables
     public void setPosicao() {
         Dimension d = this.getDesktopPane().getSize();
@@ -916,6 +1021,50 @@ public class VModalidade extends javax.swing.JInternalFrame {
     private void validarVazio(Boolean valid) {
         jlVerificarNome.setVisible(!valid);
         jlVerificarVal.setVisible(!valid);
+    }
+
+    public ArrayList getSelectedSemana() {
+        ArrayList<JCheckBox> week = new ArrayList<>();
+
+        if (seg.isSelected()) {
+            week.add(seg);
+        }
+        if (ter.isSelected()) {
+            week.add(ter);
+        }
+        if (qua.isSelected()) {
+            week.add(qua);
+        }
+        if (qui.isSelected()) {
+            week.add(qui);
+        }
+
+        if (sex.isSelected()) {
+            week.add(sex);
+        }
+
+        if (sab.isSelected()) {
+            week.add(sab);
+        }
+        if (dom.isSelected()) {
+            week.add(dom);
+        }
+        return week;
+    }
+
+    public void unSelectedSemana() {
+        seg.setSelected(false);
+        ter.setSelected(false);
+        qua.setSelected(false);
+        qui.setSelected(false);
+        sex.setSelected(false);
+        sab.setSelected(false);
+        dom.setSelected(false);
+    }
+
+    public void horarioSemana(String semana) {
+        ModeloTabelaModalidade model = (ModeloTabelaModalidade) jtModalidade.getModel();
+        controllerHorario.preencherJTabelaHorarioSemana(semana);
     }
 
 }
