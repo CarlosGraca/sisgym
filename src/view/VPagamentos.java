@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Item;
 import persistence.Conexao;
 
@@ -133,6 +134,11 @@ public class VPagamentos extends javax.swing.JInternalFrame {
         jtPag_dataValidade = new com.toedter.calendar.JDateChooser();
         jtPag_data = new com.toedter.calendar.JDateChooser();
         jcbClientePagamento = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tab_mes = new javax.swing.JTable();
+        jLabel14 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -381,23 +387,50 @@ public class VPagamentos extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Remove.png"))); // NOI18N
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Create.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        tab_mes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Código", "Mês"
+            }
+        ));
+        jScrollPane3.setViewportView(tab_mes);
+
+        jLabel14.setText("Meses");
+
         javax.swing.GroupLayout tab_novoLayout = new javax.swing.GroupLayout(tab_novo);
         tab_novo.setLayout(tab_novoLayout);
         tab_novoLayout.setHorizontalGroup(
             tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tab_novoLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2_cod)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel14))
+                .addGap(10, 10, 10)
                 .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(tab_novoLayout.createSequentialGroup()
-                        .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2_cod, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(10, 10, 10)
                         .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtPag_valor, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                             .addComponent(jtPag_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -409,17 +442,17 @@ public class VPagamentos extends javax.swing.JInternalFrame {
                             .addComponent(jcbPag_tipoPag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jcbClientePagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtPag_dataValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(tab_novoLayout.createSequentialGroup()
-                        .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(tab_novoLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(0, 632, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2))
-                        .addContainerGap())))
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtPag_dataValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tab_novoLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2))))
+                    .addComponent(jScrollPane3))
+                .addGap(19, 19, 19))
         );
         tab_novoLayout.setVerticalGroup(
             tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,15 +486,21 @@ public class VPagamentos extends javax.swing.JInternalFrame {
                         .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jtPag_dataValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))))
-                .addGap(10, 10, 10)
+                .addGap(9, 9, 9)
                 .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jcbPag_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbPag_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(33, 33, 33))
         );
 
         Jtab_pagamento.addTab("Dados Pagamento", tab_novo);
@@ -641,6 +680,16 @@ public class VPagamentos extends javax.swing.JInternalFrame {
         }
         controllerPagamento.pesquisaPagamento(jtCliente.getText(),mes ,dataInicio,dataFim,"Pagamento");
     }//GEN-LAST:event_jB_Pesquisa_pagamentoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String sql;
+        DefaultTableModel model = (DefaultTableModel) tab_mes.getModel();
+        if (jcbPag_mes.getSelectedIndex() != 0) {                  
+            model.addRow(new Object[]{jcbPag_mes.getSelectedIndex(), jcbPag_mes.getSelectedItem()});
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione pelo menos um mês");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     public void imprimirRelatorio(String rel, String text) {    
         String nomeCliente = "Imprimir a lista de todos os produtos do ginásio " + text;
         int opcaoEscolhida = JOptionPane.showConfirmDialog(null, nomeCliente, "Confirmacão Inpressao ", JOptionPane.YES_OPTION);
@@ -654,6 +703,8 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JTabbedPane Jtab_pagamento;
     private javax.swing.JButton jB_Pesquisa_pagamento;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooserDataFim;
     private com.toedter.calendar.JDateChooser jDateChooserDataInicio;
     private javax.swing.JLabel jLabel1;
@@ -661,6 +712,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2_cod;
     private javax.swing.JLabel jLabel3;
@@ -673,6 +725,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     public static javax.swing.JTable jTable_pagamento;
     private javax.swing.JButton jbApagar;
@@ -693,6 +746,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     public static javax.swing.JTextArea jtPag_obs;
     public static javax.swing.JTextField jtPag_valor;
     private javax.swing.JPanel tab_list;
+    private javax.swing.JTable tab_mes;
     private javax.swing.JPanel tab_novo;
     // End of variables declaration//GEN-END:variables
    public void setPosicao() {
