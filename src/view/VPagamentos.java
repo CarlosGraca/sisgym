@@ -12,11 +12,14 @@ import java.awt.event.ItemEvent;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Item;
+import model.Mes;
 import persistence.Conexao;
 
 /**
@@ -39,11 +42,13 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     String control = null;
     public static String idCliente;
     public static String idMatricula;
+    public static ArrayList<Mes> arrayMes;
     /**
      * Creates new form Teste
      */
     public VPagamentos() {
         initComponents();
+        arrayMes = new ArrayList<>();
         jbNovo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbNovo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jbNovo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -134,11 +139,14 @@ public class VPagamentos extends javax.swing.JInternalFrame {
         jtPag_dataValidade = new com.toedter.calendar.JDateChooser();
         jtPag_data = new com.toedter.calendar.JDateChooser();
         jcbClientePagamento = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jb_remove_mes = new javax.swing.JButton();
+        jBt_add_mes = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tab_mes = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jt_value = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -378,7 +386,12 @@ public class VPagamentos extends javax.swing.JInternalFrame {
 
         jcbPag_tipoPag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "DINHEIRO", "CHEQUE", "VINTi4" }));
 
-        jcbPag_mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Septembro", "Outubro", "Novembro", "Decembro" }));
+        jcbPag_mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Septembro", "Outubro", "Novembro", "Dezembro" }));
+        jcbPag_mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbPag_mesActionPerformed(evt);
+            }
+        });
 
         jcbClientePagamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbClientePagamento.addItemListener(new java.awt.event.ItemListener() {
@@ -386,13 +399,23 @@ public class VPagamentos extends javax.swing.JInternalFrame {
                 jcbClientePagamentoItemStateChanged(evt);
             }
         });
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Remove.png"))); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Create.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jcbClientePagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jcbClientePagamentoActionPerformed(evt);
+            }
+        });
+
+        jb_remove_mes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Remove.png"))); // NOI18N
+        jb_remove_mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_remove_mesActionPerformed(evt);
+            }
+        });
+
+        jBt_add_mes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/Create.png"))); // NOI18N
+        jBt_add_mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt_add_mesActionPerformed(evt);
             }
         });
 
@@ -410,6 +433,33 @@ public class VPagamentos extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(tab_mes);
 
         jLabel14.setText("Meses");
+
+        jt_value.setEditable(false);
+        jt_value.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jt_value.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jt_value.setEnabled(false);
+        jt_value.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jt_valueActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jt_value, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jt_value, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setText("TOTAL:");
 
         javax.swing.GroupLayout tab_novoLayout = new javax.swing.GroupLayout(tab_novo);
         tab_novo.setLayout(tab_novoLayout);
@@ -448,9 +498,13 @@ public class VPagamentos extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtPag_dataValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(tab_novoLayout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(jb_remove_mes)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2))))
+                                .addComponent(jBt_add_mes))
+                            .addGroup(tab_novoLayout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane3))
                 .addGap(19, 19, 19))
         );
@@ -466,7 +520,8 @@ public class VPagamentos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jcbClientePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jcbClientePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -481,24 +536,30 @@ public class VPagamentos extends javax.swing.JInternalFrame {
                             .addComponent(jtPag_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addComponent(jLabel6))
-                    .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jtPag_data, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtPag_dataValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))))
+                    .addGroup(tab_novoLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtPag_data, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jtPag_dataValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7)))))
                 .addGap(9, 9, 9)
-                .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jcbPag_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                    .addComponent(jb_remove_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jcbPag_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBt_add_mes)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(tab_novoLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(0, 115, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tab_novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(33, 33, 33))
         );
@@ -581,25 +642,50 @@ public class VPagamentos extends javax.swing.JInternalFrame {
         controllerPagamento.selectClienteComobox();
         jcbPag_desc.setSelectedIndex(2);
         jcbPag_tipoPag.setSelectedIndex(1);
+        DefaultTableModel model = (DefaultTableModel) tab_mes.getModel();
+        model.setRowCount(0);
+        arrayMes.clear();
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        codPagamento = codPagamento();
-        Item selected_item = (Item) jcbClientePagamento.getSelectedItem();
+        
+        Item selected_item;
         idMatricula = "1";
         if (jtPag_cod.getText().equals("")) {
-            //calculaDataVencimento();
             if (validarCampos()) {
-                if (controllerPagamento.manutencaoPagamento("inserir", jtPag_cod.getText(),selected_item.getId(), selected_item.getIdMatricula(), Principal.id, jcbPag_tipoPag.getSelectedItem().toString(), new java.sql.Date(jtPag_data.getDate().getTime()), new java.sql.Date(jtPag_dataValidade.getDate().getTime()), jtPag_obs.getText(), jcbPag_desc.getSelectedItem().toString(), codPagamento, true, jcbPag_mes.getSelectedIndex())) {
-                    emitirRecibo(codPagamento);
-                    ativarDesativarPagamentoCampos(false);
-                    limparPagamentoCampos();
-                    ativaDesativaBotao(false);
-                    Jtab_pagamento.setSelectedComponent(tab_list);
+                System.out.println("count: "+arrayMes.size());
+                selected_item = (Item) jcbClientePagamento.getSelectedItem();
+                for(int i=0; i<arrayMes.size();i++){
+                    System.out.println("Mes: "+arrayMes.get(i).getId());
+                     codPagamento = codPagamento(); 
+                    if (controllerPagamento.manutencaoPagamento("inserir", jtPag_cod.getText(),
+                            selected_item.getId(), 
+                            selected_item.getIdMatricula(), 
+                            Principal.id, jcbPag_tipoPag.getSelectedItem().toString(), 
+                            new java.sql.Date(jtPag_data.getDate().getTime()),
+                            new java.sql.Date(jtPag_dataValidade.getDate().getTime()), 
+                            jtPag_obs.getText(), 
+                            jcbPag_desc.getSelectedItem().toString(), 
+                            codPagamento, 
+                            true, 
+                            arrayMes.get(i).getId())) {                        
+                    }
                 }
+                JOptionPane.showMessageDialog(null, "Registo salvo com sucesso");
+                SimpleDateFormat formataData = new SimpleDateFormat("yyyy-MM-dd");
+                Date data = new Date();
+                String dtRegister = formataData.format(data);
+                System.out.println("date::"+dtRegister +" idc::"+selected_item.getId());
+                emitirRecibo(dtRegister,selected_item.getId());
+                ativarDesativarPagamentoCampos(false);
+                limparPagamentoCampos();
+                ativaDesativaBotao(false);
+                Jtab_pagamento.setSelectedComponent(tab_list);  
+                
             }
         } else {
             if (validarCampos()) {
+                 selected_item = (Item) jcbClientePagamento.getSelectedItem();
                 if (controllerPagamento.manutencaoPagamento("editar", jtPag_cod.getText(), (selected_item.getId()), Integer.parseInt(idMatricula), Principal.id, jcbPag_tipoPag.getSelectedItem().toString(), new java.sql.Date(jtPag_data.getDate().getTime()), new java.sql.Date(jtPag_dataValidade.getDate().getTime()), jtPag_obs.getText(), jcbPag_desc.getSelectedItem().toString(), codPagamento, true, jcbPag_mes.getSelectedIndex())) {
                     emitirRecibo(codPagamento);
                     ativarDesativarPagamentoCampos(false);
@@ -622,7 +708,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbApagarActionPerformed
-       codPagamento = codPagamento();
+        codPagamento = codPagamento();
         controllerPagamento.manutencaoPagamento("update", jtPag_cod.getText(), Integer.parseInt(idCliente), Integer.parseInt(idMatricula), Principal.id, jcbPag_tipoPag.getSelectedItem().toString(), new java.sql.Date(jtPag_data.getDate().getTime()), new java.sql.Date(jtPag_dataValidade.getDate().getTime()), "Pagamento Cancelado", jcbPag_desc.getSelectedItem().toString(), codPagamento, false, jcbPag_mes.getSelectedIndex());
         ativarDesativarPagamentoCampos(false);
         limparPagamentoCampos();
@@ -642,14 +728,25 @@ public class VPagamentos extends javax.swing.JInternalFrame {
             con.EjecutarReporteStream(caminho);
         }
     }//GEN-LAST:event_jbImprimirActionPerformed
-
+    
+    public void fun_totalApagar(){
+        DefaultTableModel model = (DefaultTableModel) tab_mes.getModel();
+        int count =model.getRowCount();        
+        if (count == 0) {
+            count = 1;
+        }
+        int value = Integer.parseInt(jtPag_valor.getText()) * count;
+        jt_value.setText(String.valueOf(value)+".00 ECV");
+    }
     private void jcbClientePagamentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbClientePagamentoItemStateChanged
-       if(control.equals("Novo")){
+        
+        if(control.equals("Novo")){
             if (evt.getStateChange() == ItemEvent.SELECTED) {
                 try{
                 Item selected_item = (Item) jcbClientePagamento.getSelectedItem();                
                 int valor = controllerPagamento.getValorPagamento(selected_item.getIdMatricula(),selected_item.getId());
                 jtPag_valor.setText(String.valueOf(valor));
+                fun_totalApagar();
                 }catch(java.lang.ClassCastException ex){
                     System.out.println("ok");
                 }
@@ -681,15 +778,75 @@ public class VPagamentos extends javax.swing.JInternalFrame {
         controllerPagamento.pesquisaPagamento(jtCliente.getText(),mes ,dataInicio,dataFim,"Pagamento");
     }//GEN-LAST:event_jB_Pesquisa_pagamentoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String sql;
-        DefaultTableModel model = (DefaultTableModel) tab_mes.getModel();
+    private void jBt_add_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt_add_mesActionPerformed
+               
+        DefaultTableModel model = new DefaultTableModel(0, 0);
+        
         if (jcbPag_mes.getSelectedIndex() != 0) {                  
-            model.addRow(new Object[]{jcbPag_mes.getSelectedIndex(), jcbPag_mes.getSelectedItem()});
+        // add header of the table
+        String header[] = new String[] { "Codigo", "Mês" };
+
+        // add header in table model     
+        model.setColumnIdentifiers(header);
+        //set model into the table object
+        tab_mes.setModel(model);
+      
+        // add row dynamically into the table 
+        arrayMes.add(new Mes(jcbPag_mes.getSelectedIndex(), (String) jcbPag_mes.getSelectedItem()));
+        
+        for (int index = 0; index < arrayMes.size(); index ++){
+              model.addRow(new Object[] {arrayMes.get(index).getId(),arrayMes.get(index).getName()});
+        }
+        fun_totalApagar();
         } else {
             JOptionPane.showMessageDialog(null, "Selecione pelo menos um mês");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBt_add_mesActionPerformed
+
+    private void jcbPag_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPag_mesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbPag_mesActionPerformed
+
+    private void jb_remove_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_remove_mesActionPerformed
+        codPagamento = codPagamento();
+        DefaultTableModel model = (DefaultTableModel) tab_mes.getModel();
+        if (tab_mes.getRowCount() != 0) {
+            if (tab_mes.getSelectedRow() != -1) {            
+                
+                int index = (int) model.getValueAt(tab_mes.getSelectedRow(), 0);
+                for (int i = 0; i < arrayMes.size(); i++) {
+                    if (arrayMes.get(i).getId() == index) {
+                        arrayMes.remove(i);                        
+                        model.removeRow(tab_mes.getSelectedRow());
+                        fun_totalApagar();
+                        if (!jtPag_cod.getText().equals("")){
+                        controllerPagamento.manutencaoPagamento("update", jtPag_cod.getText(), 
+                                                                Integer.parseInt(idCliente), 
+                                                                Integer.parseInt(idMatricula), 
+                                                                Principal.id, 
+                                                                jcbPag_tipoPag.getSelectedItem().toString(), 
+                                                                new java.sql.Date(jtPag_data.getDate().getTime()), 
+                                                                new java.sql.Date(jtPag_dataValidade.getDate().getTime()), 
+                                                                "Pagamento Cancelado", 
+                                                                jcbPag_desc.getSelectedItem().toString(), 
+                                                                codPagamento, 
+                                                                false, 
+                                                                index);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_jb_remove_mesActionPerformed
+
+    private void jcbClientePagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClientePagamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbClientePagamentoActionPerformed
+
+    private void jt_valueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_valueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jt_valueActionPerformed
     public void imprimirRelatorio(String rel, String text) {    
         String nomeCliente = "Imprimir a lista de todos os produtos do ginásio " + text;
         int opcaoEscolhida = JOptionPane.showConfirmDialog(null, nomeCliente, "Confirmacão Inpressao ", JOptionPane.YES_OPTION);
@@ -703,8 +860,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JTabbedPane Jtab_pagamento;
     private javax.swing.JButton jB_Pesquisa_pagamento;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBt_add_mes;
     private com.toedter.calendar.JDateChooser jDateChooserDataFim;
     private com.toedter.calendar.JDateChooser jDateChooserDataInicio;
     private javax.swing.JLabel jLabel1;
@@ -713,6 +869,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2_cod;
     private javax.swing.JLabel jLabel3;
@@ -722,6 +879,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -734,6 +892,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbImprimir;
     private javax.swing.JButton jbNovo;
+    private javax.swing.JButton jb_remove_mes;
     public static javax.swing.JComboBox jcbClientePagamento;
     public static javax.swing.JComboBox jcbPag_desc;
     public static javax.swing.JComboBox jcbPag_mes;
@@ -745,6 +904,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
     public static com.toedter.calendar.JDateChooser jtPag_dataValidade;
     public static javax.swing.JTextArea jtPag_obs;
     public static javax.swing.JTextField jtPag_valor;
+    private javax.swing.JTextField jt_value;
     private javax.swing.JPanel tab_list;
     private javax.swing.JTable tab_mes;
     private javax.swing.JPanel tab_novo;
@@ -766,6 +926,9 @@ public class VPagamentos extends javax.swing.JInternalFrame {
         } else if (jcbPag_tipoPag.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Tipo moeda é obrigatório !");
             jcbPag_tipoPag.requestFocus();
+            return false;
+        }else if (tab_mes.getRowCount() == 0){
+            JOptionPane.showMessageDialog(this, "Mês é obrigatório !");
             return false;
         }
         return true;
@@ -799,6 +962,7 @@ public class VPagamentos extends javax.swing.JInternalFrame {
         jcbPag_mes.setSelectedIndex(0);
         jcbClientePagamento.setSelectedIndex(0);
         jcbPag_tipoPag.setSelectedIndex(0);
+        jt_value.setText("");
     }
 
 //    public void selectCliente() {
@@ -867,6 +1031,15 @@ public class VPagamentos extends javax.swing.JInternalFrame {
         if (opcaoEscolhida == JOptionPane.YES_OPTION) {
             InputStream caminho = getClass().getResourceAsStream("/relatorios/RRecibo.jrxml");
             con.EjectuarReporteFiltroString(cod, "idPag", caminho);
+        }
+    }
+    
+    public void emitirRecibo(String dt,int idCliente) {
+        String text = "Imprimir este recibo de pagamento ";
+        int opcaoEscolhida = JOptionPane.showConfirmDialog(null, text, "Confirmacão Inpressao ", JOptionPane.YES_OPTION);
+        if (opcaoEscolhida == JOptionPane.YES_OPTION) {
+            InputStream caminho = getClass().getResourceAsStream("/relatorios/RRecibo_all.jrxml");
+            con.EjectuarReporteFiltroP(dt,idCliente,caminho);
         }
     }
    /* class ItemChangeListener implements ItemListener{

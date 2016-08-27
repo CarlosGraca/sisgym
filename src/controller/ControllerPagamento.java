@@ -61,7 +61,7 @@ public class ControllerPagamento {
             switch (acao) {
                 case "inserir":
                     if (pagDao.incluir(pagModel)) {
-                        JOptionPane.showMessageDialog(null, "Registo salvo com sucesso");
+                        
                         // pagDao.getTodosPagamento();
                         preencherJTabelaPagamento();
                        // Jtab_pagamento.setSelectedIndex(0);

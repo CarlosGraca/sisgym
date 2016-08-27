@@ -378,4 +378,21 @@ public final class Conexao {
             JOptionPane.showMessageDialog(null, "Não encontrou nenhum relatorio: " + e.getMessage());
         }
     }
+    
+    public void EjectuarReporteFiltroP(String dt_register, int idCliente, InputStream URL) {
+        try {
+            HashMap filtro = new HashMap();
+            filtro.put("dtRgister",dt_register);
+            filtro.put("idCliente",idCliente );
+            
+            System.out.println("con paraem repor:: dtRgister "+dt_register+" idCliente:: "+idCliente);
+
+            JasperReport Jas_Rep = JasperCompileManager.compileReport(URL);
+            JasperPrint Jas_Prin = JasperFillManager.fillReport(Jas_Rep, filtro, this.getConexao());
+            JasperViewer jv = new JasperViewer(Jas_Prin, false);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, "Não encontrou nenhum relatorio: " + e.getMessage());
+        }
+    }
 }
